@@ -19,3 +19,15 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.name
+
+class Dish(models.Model):
+    name = models.TextField()
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField('Dollar amount', max_digits=8, decimal_places=2, blank=True, null=True)
+    user = models.ForeignKey(User, defualt=1)
+    date = models.DateField(default=date.today)
+    image = models.ImageField(upload_to='myrestaurants', blank=True, null=True)
+    restaurant = models.ForeignKey(Restaurant, null=True, related_name='dishes')
+
+    def __str__(self):
+        return self.name
