@@ -41,3 +41,7 @@ class Review(models.Model):
 
     class Meta:
         abstract = True
+
+class RestaurantReview(Review):
+    restaurant = models.ForeignKey(Restaurant)
+
