@@ -15,3 +15,14 @@ class RestaurantDetail(DetailView):
         context = super(RestaurantDetail, self).get_context_data(**kwargs)
         context['RATING_CHOICES'] = RestaurantReview.RATING_CHOICES
         return context
+
+class RestaurantCreate(CreateView):
+    model = Restaurant
+    template_name = 'myrestaurants/form.html'
+    form_class = RestaurantForm
+
+    # This method is called when valid form data has been POSTed.
+    # It should return an HttpResponse.
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(RestaurantCreate, self).form_valid(form)
