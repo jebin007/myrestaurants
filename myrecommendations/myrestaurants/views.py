@@ -37,4 +37,4 @@ class DishCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.restaurant = Restaurant.objects.get(id=self.kwargs['pk'])
-        return Super(DishCreate, self).form_valid(form)
+        return super(DishCreate, self).form_valid(form)
