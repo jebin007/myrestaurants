@@ -26,3 +26,15 @@ class RestaurantCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(RestaurantCreate, self).form_valid(form)
+
+class DishCreate(CreateView):
+    model = Dish
+    template_name = 'myrestaurants/form.html'
+    form_class = DishForm
+
+    # This method is called when valid form data has been POSTed.
+    # It should return an HttpResponse.
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.restaurant = Restaurant.objects.get(id=self.kwargs['pk'])
+        return Super(DishCreate, self).form_valid(form)
