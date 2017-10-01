@@ -38,3 +38,14 @@ class DishCreate(CreateView):
         form.instance.user = self.request.user
         form.instance.restaurant = Restaurant.objects.get(id=self.kwargs['pk'])
         return super(DishCreate, self).form_valid(form)
+
+def review(request, pk):
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    review = RestaurantReview(
+        rating=request.POST['rating'],
+        comment=request.POST['comment'],
+        user=request.user,
+        restaurant=restaurant)
+    )
+    review.save()
+    return HttpResponseRedirect(reverse('myrestaurants:restaurants_detail', args=(restaurant.id,)))
