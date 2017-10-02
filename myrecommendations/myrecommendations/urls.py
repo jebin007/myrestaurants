@@ -18,5 +18,21 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^myrestaurants/', include('myrestaurants.urls', namespace='myrestaurants'))
+    url(r'^myrestaurants/', include('myrestaurants.urls', namespace='myrestaurants')),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # ... the rest of your URLconf goes here ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# from django.conf import settings
+
+# if settings.DEBUG:
+    # urlpatterns += url(
+    #         r'^media/(?P<path>.\*)\$',
+    #         'django.views.static.serve',
+    #         {'document_root': settings.MEDIA_ROOT }
+    #         ),

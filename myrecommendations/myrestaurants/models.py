@@ -28,6 +28,7 @@ class Dish(models.Model):
     date = models.DateField(default=date.today)
     image = models.ImageField(upload_to='myrestaurants', blank=True, null=True)
     restaurant = models.ForeignKey(Restaurant, null=True, related_name='dishes')
+    image = models.ImageField(upload_to="myrestaurants", blank=True, null=True)
 
     def __str__(self):
         return self.name
