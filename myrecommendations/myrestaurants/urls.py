@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.utils import timezone
 from django.views.generic import DetailView, ListView, UpdateView
 from . models import Restaurant, Dish
-from .forms import RestaurantForm, DishForm
+from . forms import RestaurantForm, DishForm
 from . views import RestaurantCreate, DishCreate, RestaurantDetail, review
 
 urlpatterns = [
