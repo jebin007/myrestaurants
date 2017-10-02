@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, CreateView
 from . models import RestaurantReview, Restaurant, Dish
-from forms import RestaurantForm, DishForm
+from . forms import RestaurantForm, DishForm
 
 # Create your views here.
 
@@ -45,7 +45,7 @@ def review(request, pk):
         rating=request.POST['rating'],
         comment=request.POST['comment'],
         user=request.user,
-        restaurant=restaurant)
+        restaurant=restaurant
     )
     review.save()
     return HttpResponseRedirect(reverse('myrestaurants:restaurants_detail', args=(restaurant.id,)))
